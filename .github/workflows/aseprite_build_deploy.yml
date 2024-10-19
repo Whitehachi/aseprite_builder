@@ -25,8 +25,8 @@ jobs:
         LATEST_TAG=$(echo "${data}" | jq -r '.tag_name')
         DOWNLOAD_URL=$(echo "${data}" | jq -r '.assets[].browser_download_url')
         VERSION_INFO=$(echo "${data}" | jq -r '.body')
-        
         echo "${LATEST_TAG}" > ${LATEST_TAG}.txt
+        echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
         echo "::set-output name=latest_tag::${LATEST_TAG}"
         echo "::set-output name=download_url::${DOWNLOAD_URL}"
         echo "::set-output name=version_info::${VERSION_INFO}"
